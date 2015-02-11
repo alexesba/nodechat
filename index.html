@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Node chat app</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+  <script>
+    var server = io.connect('http://localhost:8080');
+    server.on('connect', function(data){
+        $('status').html('Conected to chat');
+        nickname = prompt('What is your nickname?');
+        $('#messages').empty();
+        server.emit('join', nickname);
+        });
+    server.on('messages', function(data){
+        $('#messages').append("<li>"+data+"</li>");
+        });
+
+    server.on('add chatter', function(name){
+        var chatter = $('<li data-name="'+name+'">'+name+'</li>');
+          $('#chatters').append(chatter);
+        });
+
+    server.on('remove chatter', function(name){
+        $('#chatters  li[data-name="'+ name +'"]').remove();
+        });
+
+    $(document).ready(function(){
+        $('form#chat_form').submit(function(e){
+          e.preventDefault(e);
+          var message = $('#chat_input').val();
+          server.emit('messages', message);
+          });
+        });
+  </script>
+</head>
+<body>
+  <form id="chat_form">
+    <ul id="chatters">
+    </ul>
+    <ul id='messages'></ul>
+    <input type='text' id='chat_input' value='demo'>
+    <input type='submit' value="Send">
+  </form>
+</body>
+</html>
