@@ -35,7 +35,6 @@ io.on('connection', function(client){
   });
 
   client.on('disconnect', function(name){
-    debugger;
     client.broadcast.emit('remove chatter', client.nickname);
     redisClient.srem('chatters', client.nickname);
   });
@@ -48,6 +47,8 @@ io.on('connection', function(client){
   });
 });
 
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/node_modules'));
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
