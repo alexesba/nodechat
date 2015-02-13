@@ -1,9 +1,10 @@
 angular.module('chatApp.controllers', []).
-controller('chatCtrl',['$scope','socket', function($scope, socket){
+controller('chatCtrl',['$scope','socket','config', function($scope, socket, config){
 
   $scope.currentMessage = '';
   $scope.username = '';
   $scope.logedin = false;
+  $scope.settings = config;
 
   socket.on('connect', function(){
     console.log('connection stablish!');

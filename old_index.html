@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Node chat app</title>
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body ng-app='chatApp'>
+  <div class="container" ng-controller="chatCtrl">
+    <div class="panel panel-default">
+      <div class="panel-heading"><i ng-show="logedin">{{ username }}</i></div>
+      <div class="panel-body">
+         <div class="jumbotron">
+        <ul id='messages'></ul>
+
+           <form ng-submit="setUsername()" ng-hide="logedin">
+             <input class="username" type="text" ng-model='username'>
+             <button>login</button>
+           </form>
+
+           <form  ng-submit='sendMessage()' ng-show="logedin">
+             <input id="message" type="text" ng-model='currentMessage'>
+             <button>send</button>
+           </form>
+         </div>
+      </div>
+    </div>
+
+    <!-- <div class="panel panel&#45;default"> -->
+    <!--   <div class="panel&#45;heading"> -->
+    <!--     <h3 class="panel&#45;title">Panel title</h3> -->
+    <!--   </div> -->
+    <!--   <div class="panel&#45;body"> -->
+    <!--     Panel content -->
+    <!--   </div> -->
+    <!-- </div> -->
+    <!-- <div class="jumbotron"> -->
+    <!--   <div class="alert alert&#45;success" role="alert"> -->
+    <!--     <span class="glyphicon glyphicon&#45;exclamation&#45;sign" aria&#45;hidden="true"></span> -->
+    <!--     <span class="sr&#45;only">Error:</span> -->
+    <!--     Enter a valid email address -->
+    <!--   </div> -->
+    <!--   <form id="chat_form"> -->
+    <!--     <ul id="rooms"> -->
+    <!--       <li data&#45;room="general">General</li> -->
+    <!--     </ul> -->
+    <!--     <ul id="chatters"> -->
+    <!--     </ul> -->
+    <!--     <ul id='messages'></ul> -->
+    <!--     <input type='text' id='chat_input' value='demo'> -->
+    <!--     <input type='submit' value="Send"> -->
+    <!--   </form> -->
+    <!-- </div> -->
+  </div>
+</body>
+</html>
