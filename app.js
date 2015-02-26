@@ -55,5 +55,6 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-server.listen(8080);
-console.log('Listen on the port: 8080');
+server.listen(8080, function(){
+  console.log('Listen on the port: 8080');
+});
